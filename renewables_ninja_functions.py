@@ -366,63 +366,6 @@ def chain_limit_keeper(token, token_df, iterstart, iterend, limit_dict, burst_li
 
 ### Define requests loop
 
-#def get_newtokens(account_file):
-#    
-#    login_page = "https://www.renewables.ninja/login"
-#    scrape_target = "https://www.renewables.ninja/profile/new-token"
-#    token_list = []
-#    
-#    for account in account_list:
-#        
-#        with requests.session() as s:
-#            site = s.get(login_page)
-#            bs_content = bs(site.content, "html.parser")
-#            token = bs_content.find("input", {"name":"csrfmiddlewaretoken"})["value"]
-#            
-#            login_data = {"username":account[0],
-#                          "password":account[1],
-#                          "csrfmiddlewaretoken":token}
-#            s.post(login_page, login_data, headers=dict(referer=login_page))
-#            
-#            new_token = s.get(scrape_target, headers=dict(referer=scrape_target))
-#            print(new_token)
-#            token_list.append(new_token)
-#        
-#    
-#    return(token_list)
-
-
-#login_page = "http://www.renewables.ninja/login"
-#account = (r"nicolasfelix1998@gmail.com","SIMrenew44")
-#scrape_target = "http://www.renewables.ninja/profile"
-#
-#with requests.Session() as s:
-#    site = s.get(login_page)
-#    bs_content = bs(site.content, "html.parser")
-#    entrytoken = bs_content.find("input", {"name":"csrfmiddlewaretoken"})["value"]
-#    #entry2 = bs_content.find("input", {"name":"csrftoken"})["value"]
-#    #print(entry2)
-#    print(entrytoken)
-#    
-#    login_data = {"username":account[0],
-#                  "password":account[1],
-#                  "csrfmiddlewaretoken":entrytoken}
-#    r = s.post(login_page, data=login_data, headers={"referer":login_page})
-#    print(r.cookies)
-#    print("##########################################")
-#    
-#    new_token = s.get(scrape_target, headers={"referer":scrape_target})
-#    print(new_token.content)
-#
-#with requests.Session() as s:
-#    site = s.get("http://quotes.toscrape.com/login")
-#    bs_content = bs(site.content, "html.parser")
-#    token = bs_content.find("input", {"name":"csrf_token"})["value"]
-#    login_data = {"username":"admin","password":"12345", "csrf_token":token}
-#    s.post("http://quotes.toscrape.com/login",login_data)
-#    home_page = s.get("http://quotes.toscrape.com")
-#    print(home_page.content)
-
 def ninja_flexreq(param_table, renewable, years, tokens=[], burst_limit=6, 
                   sustained_limit=4):
     """Run loop of requests over flexible parameter set
@@ -676,5 +619,62 @@ def ninja_aggregation(ninja_table, renewable, capacity_table, unit_divider= 1,
 
     return(ninja_output)
 
-###################################################################################################
+####Development zone####################################################################################
+
+#def get_newtokens(account_file): ## Automated retrieval of tokens for given account data
+#    
+#    login_page = "https://www.renewables.ninja/login"
+#    scrape_target = "https://www.renewables.ninja/profile/new-token"
+#    token_list = []
+#    
+#    for account in account_list:
+#        
+#        with requests.session() as s:
+#            site = s.get(login_page)
+#            bs_content = bs(site.content, "html.parser")
+#            token = bs_content.find("input", {"name":"csrfmiddlewaretoken"})["value"]
+#            
+#            login_data = {"username":account[0],
+#                          "password":account[1],
+#                          "csrfmiddlewaretoken":token}
+#            s.post(login_page, login_data, headers=dict(referer=login_page))
+#            
+#            new_token = s.get(scrape_target, headers=dict(referer=scrape_target))
+#            print(new_token)
+#            token_list.append(new_token)
+#        
+#    
+#    return(token_list)
+
+
+#login_page = "http://www.renewables.ninja/login"
+#account = (r"nicolasfelix1998@gmail.com","SIMrenew44")
+#scrape_target = "http://www.renewables.ninja/profile"
+#
+#with requests.Session() as s:
+#    site = s.get(login_page)
+#    bs_content = bs(site.content, "html.parser")
+#    entrytoken = bs_content.find("input", {"name":"csrfmiddlewaretoken"})["value"]
+#    #entry2 = bs_content.find("input", {"name":"csrftoken"})["value"]
+#    #print(entry2)
+#    print(entrytoken)
+#    
+#    login_data = {"username":account[0],
+#                  "password":account[1],
+#                  "csrfmiddlewaretoken":entrytoken}
+#    r = s.post(login_page, data=login_data, headers={"referer":login_page})
+#    print(r.cookies)
+#    print("##########################################")
+#    
+#    new_token = s.get(scrape_target, headers={"referer":scrape_target})
+#    print(new_token.content)
+#
+#with requests.Session() as s:
+#    site = s.get("http://quotes.toscrape.com/login")
+#    bs_content = bs(site.content, "html.parser")
+#    token = bs_content.find("input", {"name":"csrf_token"})["value"]
+#    login_data = {"username":"admin","password":"12345", "csrf_token":token}
+#    s.post("http://quotes.toscrape.com/login",login_data)
+#    home_page = s.get("http://quotes.toscrape.com")
+#    print(home_page.content)
 
